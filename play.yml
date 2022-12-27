@@ -3,6 +3,7 @@
   hosts: cisco
   gather_facts: false
   connection: network_cli
+  become: true
   become_method: enable
   
   tasks:
