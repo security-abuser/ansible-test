@@ -1,0 +1,12 @@
+---
+
+- name: "IP loop"
+  hosts: cisco
+  gather_facts: true
+  connection: network_cli
+
+  tasks:
+    - name: "Loop ip add"
+      debug:
+        msg: "{{ ansible_facts['net_hostname'] }} ip is {{ item }}"
+      loop: "{{ ansible_facts['net_all_ipv4_addresses'] }}"

@@ -1,0 +1,10 @@
+---
+
+- name: "VAR TEST PLAYBOOK"
+  hosts: cisco
+  vars:
+    ip_add: 1.1.1.1
+  tasks:
+    - name: "Print var"
+      debug:
+        msg: "IP is {{ip_add}}"
