@@ -1,13 +1,20 @@
 ---
-
 - name: "Template test"
   hosts: cisco
   gather_facts: false
   connection: network_cli
   become: true
   become_method: enable
-  
+
   tasks:
     - name: "Config loopback"
       cisco.ios.ios_config:
         src: "templates/template.j2"
+      register: loopback_conf
+      notify: loopback0
+  handlers:
+    - name: Loopback handler
+      debug:
+        msg: "{{ loopback_conf }}"
+      listen: loopback0
+...
