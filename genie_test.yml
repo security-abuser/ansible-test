@@ -1,0 +1,21 @@
+---
+
+- name: Router show version
+  hosts: 192.168.0.1
+  connection: network_cli
+
+  tasks:
+    - name: Check version
+      cisco.ios.ios_command:
+        commands: "show version"
+      register: cisco_ver
+
+    -
+      name: Parse version
+      ansible.builtin.set_fact:
+        parsed_data: >
+          {{ cisco_ver.stdout[0] | clay584.genie.parse_genie(command='show version', os='ios') }}
+
+    - name: Print version
+      debug:
+        msg: "This device has up for {{ parsed_data.version.uptime }}"

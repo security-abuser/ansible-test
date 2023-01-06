@@ -1,0 +1,15 @@
+
+---
+
+- name: Router show version
+  hosts: 192.168.0.1
+  connection: network_cli
+
+  tasks:
+    - name: Check version
+      cisco.ios.ios_command:
+        commands: "show version"
+      register: cisco_ver
+    - name: Print version
+      debug:
+        msg: "{{ cisco_ver }}"
