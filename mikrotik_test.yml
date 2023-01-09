@@ -1,0 +1,15 @@
+---
+
+-
+  name: Mikrotik test playbook
+  hosts: mikrotik
+  tasks:
+    -
+      name: Gather mt facts
+      community.routeros.facts:
+        gather_subset: all
+      register: mt_fct
+    -
+      name: print facts
+      debug:
+        msg: {{ mt_fct }}
