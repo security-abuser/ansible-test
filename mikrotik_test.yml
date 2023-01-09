@@ -12,4 +12,18 @@
     -
       name: print facts
       debug:
-        msg: {{ mt_fct }}
+        msg: "{{ mt_fct }}"
+
+
+    -
+      name: remove loopback
+      community.routeros.command:
+        commands:
+          - /ip address remove [find where interface=lo]
+          - /interface bridge remove [find where name=lo]
+      when: ansible_net_interfaces.lo is defined
+
+    -
+      name: print facts
+      debug:
+        msg: "{{ mt_fct }}"
