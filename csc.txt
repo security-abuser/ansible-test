@@ -1,0 +1,8 @@
+ip domain-name ansible_lab
+ip ssh version 2
+crypto key gen rsa mod 1048
+line vty 0 4
+transport input ssh
+login local
+username ansible priv 15 secret ansible
+do wr
