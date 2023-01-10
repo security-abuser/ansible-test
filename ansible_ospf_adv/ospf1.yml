@@ -1,0 +1,33 @@
+---
+
+-
+  name: Config ospf
+  hosts: all
+  connection: network_cli
+
+  tasks:
+    -
+      name: Config Cisco
+      cisco.ios.ios_config:
+        src: "templates\{{ ansible_network_os }}.j2"
+      register: cisco_fcts
+      when: "ansible_network_os == 'ios'"
+    -
+      name: Print facts
+      debug:
+        msg: "{{ cisco_fcts }}"
+      when: "ansible_network_os == 'ios'"
+      
+    -
+      name: Config Vyos
+      vyos.vyos.vyos_config:
+        src: "templates\{{ ansible_network_os }}.j2"
+      register: vyos_fcts
+      when: "ansible_network_os == 'vyos'"
+    -
+      name: Print facts
+      debug:
+        msg: "{{ vyos_fcts }}"
+      when: "ansible_network_os == 'vyos'"
+
+

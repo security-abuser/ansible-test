@@ -1,0 +1,15 @@
+ospf:
+  rid: 0.0.0.2
+  networks:
+    - network: 10.0.0.0
+      wildcard: 0.0.0.3
+      area: 10
+    
+    - network: 10.0.0.4
+      wildcard: 0.0.0.3
+      area: 10
+
+    - network: 10.0.0.8
+      wildcard: 0.0.0.3
+      area: 10
+    
