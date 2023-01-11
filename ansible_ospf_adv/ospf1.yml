@@ -9,7 +9,7 @@
     -
       name: Config Cisco
       cisco.ios.ios_config:
-        src: "templates\{{ ansible_network_os }}.j2"
+        src: "templates/{{ ansible_network_os }}.j2"
       register: cisco_fcts
       when: "ansible_network_os == 'ios'"
     -
@@ -21,7 +21,7 @@
     -
       name: Config Vyos
       vyos.vyos.vyos_config:
-        src: "templates\{{ ansible_network_os }}.j2"
+        src: "templates/{{ ansible_network_os }}.j2"
       register: vyos_fcts
       when: "ansible_network_os == 'vyos'"
     -

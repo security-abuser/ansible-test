@@ -1,5 +1,5 @@
 router ospf 10
 router-id {{ ospf.rid }}
-{% for net in ospf.nets %}
+{% for net in ospf.networks %}
 network {{ net.network }} {{ net.wildcard }} area {{ net.area }}
 {% endfor %}
